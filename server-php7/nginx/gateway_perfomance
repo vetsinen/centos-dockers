@@ -1,0 +1,23 @@
+# Cache information about open FDs, freqently accessed files.
+open_file_cache max=200000 inactive=20s;
+open_file_cache_valid 30s;
+open_file_cache_min_uses 2;
+open_file_cache_errors on;
+
+# Enable Compression.
+gzip on;
+gzip_comp_level 3;
+gzip_types text/plain text/css text/javascript application/javascript application/x-javascript text/xml application/xml image/svg+xml application/json;
+gzip_min_length 32;
+gzip_buffers 4 32k;
+gzip_vary on;
+gzip_proxied expired no-cache no-store private auth;
+gzip_disable "MSIE [1-6]\.";
+
+# Enable Decompression
+#gunzip on;
+
+# Enable browser caching for static resources.
+location ~* .(jpg|jpeg|png|gif|ico|css|js|svg)$ {
+  expires 365d;
+}
